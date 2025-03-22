@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carga de Datos - Grupo BIA</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Cargar archivo Excel</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Subir archivo</button>
+        </form>
+
+        {% if mensaje %}
+            <div class="mensaje">{{ mensaje }}</div>
+        {% endif %}
+
+        <form action="{% url 'logout' %}" method="post" style="text-align: right;">
+            {% csrf_token %}
+            <button type="submit">
+              Cerrar sesión
+            </button>
+        </form>
+    </div>
+</body>
+</html>
+
