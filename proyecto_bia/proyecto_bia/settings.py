@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'datos_sinteticos_bia',
         'USER': 'root',
-        'PASSWORD': 'Miguel4486.+',
+        'PASSWORD': '***',
         'HOST': 'localhost',  
         'PORT': '3306',      
         'OPTIONS': {
