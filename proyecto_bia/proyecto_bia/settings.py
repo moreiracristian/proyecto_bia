@@ -109,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -141,3 +140,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_REDIRECT_URL = '/carga-datos/'     # después de iniciar sesión
+LOGOUT_REDIRECT_URL = '/accounts/login/'     # después de cerrar sesión
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Cerrar sesión al cerrar navegador
+SESSION_COOKIE_AGE = 3600  # Tiempo máximo de sesión (1 hora)

@@ -5,11 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Carga de Datos - Grupo BIA</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles-carg.css' %}">
 </head>
 <body>
     <div class="container">
         <h2>Cargar archivo Excel</h2>
+
+        <div>
+            Hola, <strong>{{ user.username }}</strong>
+        </div>
 
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -21,11 +25,11 @@
             <div class="mensaje">{{ mensaje }}</div>
         {% endif %}
 
-        <form action="{% url 'logout' %}" method="post" style="text-align: right;">
-            {% csrf_token %}
-            <button type="submit">
-              Cerrar sesión
-            </button>
+        <form action="{% url 'logout' %}" method="post" style="margin: 0;">
+        {% csrf_token %}
+        <button type="submit" style="background: none; border: none; color: #0a4d8c; text-decoration: underline; cursor: pointer;">
+            Cerrar sesión
+        </button>
         </form>
     </div>
 </body>

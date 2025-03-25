@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar carga</title>
+</head>
+<body>
+    <h2>Vista previa del archivo</h2>
+    <p>Revisá los primeros registros antes de guardar:</p>
+
+    <div>
+        {{ vista_previa|safe }}
+    </div>
+
+    <form method="post" action="{% url 'confirmar_carga' %}" style="display:inline-block;">
+        {% csrf_token %}
+        <button type="submit">✅ Confirmar y guardar</button>
+    </form>
+
+    <form method="get" action="{% url 'cargar_excel' %}" style="display:inline-block; margin-left: 10px;">
+        <button type="submit">❌ Cancelar</button>
+    </form>
+</body>
+</html>
