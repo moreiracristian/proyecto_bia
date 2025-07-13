@@ -14,28 +14,35 @@
         </header>
         <main>
             <h1>Sistema para generar certificado libre de deuda</h1>
-            
-            <!-- Bloque para mostrar mensajes de error -->
-            {% if error %}
-                <div class="alert alert-danger">{{ error }}</div>
-            {% endif %}
-            
-            <!-- Bloque para mostrar mensajes informativos y enlace de descarga -->
-            {% if info %}
-                <div class="alert alert-info">{{ info }}</div>
-                {% if download_url %}
-                    <p><a href="{{ download_url }}">Descargar Certificado</a></p>
-                {% endif %}
-            {% endif %}
-            
+
+            <!-- Botón destacado para acceder al formulario desde cualquier parte -->
+            <div style="margin: 1em 0; text-align: center;">
+                <a href="{% url 'certificate-web' %}" class="btn btn-primary">
+                    Ya cancelé mi deuda
+                </a>
+            </div>
+
             <form method="post">
                 {% csrf_token %}
                 <label for="dni">Ingrese su DNI:</label>
                 <input type="text" id="dni" name="dni" required>
                 <button type="submit">Generar PDF</button>
             </form>
+
+            <!-- Mensajes debajo del formulario -->
+            {% if error %}
+                <div class="alert alert-danger" style="color: red; margin-top: 1em;">{{ error }}</div>
+            {% endif %}
+
+            {% if info %}
+                <div class="alert alert-info" style="color: green; margin-top: 1em;">{{ info }}</div>
+                {% if download_url %}
+                    <p style="margin-top: 0.5em;"><a href="{{ download_url }}">Descargar Certificado</a></p>
+                {% endif %}
+            {% endif %}
         </main>
     </div>
 </body>
 </html>
+
 
