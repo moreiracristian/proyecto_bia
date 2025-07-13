@@ -1,27 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+// frontend/src/App.js
+import React from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import GenerarCertificado from "./components/GenerarCertificado";
+// import Home or cualquier otro componente que tengas
+import Home from "./components/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reloadssss.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React Acá csacsacascsasc
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/certificado">Generar Certificado</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/certificado" element={<GenerarCertificado />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
+
