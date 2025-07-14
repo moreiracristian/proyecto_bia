@@ -1,17 +1,32 @@
-import axios from "axios";
+// frontend/src/services/api.js
+import axios from 'axios';
 
-// Opcional: puedes configurar un axios instance
+// Instancia Axios para API REST con JWT
 const api = axios.create({
-  baseURL: "/",         // Aquí queda “/” porque el proxy lo mapea al backend
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: '/', 
 });
 
+// Carga token al inicializar si existe
+const token = localStorage.getItem('access_token');
+if (token) {
+  api.defaults.headers['Authorization'] = `Bearer ${token}`;
+}
+
+export default api;
+
+// Funciones específicas de tu app si lo necesitas
 export function fetchCertificados() {
-  return api.get("/api/certificados/");
+  return api.get('/api/certificados/');
 }
 
 export function subirExcel(formData) {
-  return api.post("/api/carga-excel/", formData);
+  return api.post('/carga-datos/api/', formData);
+}
+
+export function confirmarCarga() {
+  return api.post('/carga-datos/api/confirmar/');
+}
+
+export function fetchErrores() {
+  return api.get('/carga-datos/api/errores/');
 }
