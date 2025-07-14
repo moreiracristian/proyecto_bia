@@ -24,6 +24,7 @@ env = environ.Env(
     LOGOUT_REDIRECT_URL=(str, '/'),
     SESSION_EXPIRE_AT_BROWSER_CLOSE=(bool, True),
     SESSION_COOKIE_AGE=(int, 3600),
+    CSRF_TRUSTED_ORIGINS=(list, ['http://localhost:3000']),
 )
 
 # Load environment variables from .env in PROJECT_ROOT
@@ -42,6 +43,12 @@ ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS')
 
 # CORS
 CORS_ALLOWED_ORIGINS = env('CORS_ALLOWED_ORIGINS')
+CORS_ALLOW_CREDENTIALS = True
+
+# CSRF settings for cross-origin
+CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS')
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = False
 
 # Installed apps
 INSTALLED_APPS = [
@@ -133,5 +140,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = env('LOGIN_REDIRECT_URL')
 LOGOUT_REDIRECT_URL = env('LOGOUT_REDIRECT_URL')
 
-# Sessions\SESSION_EXPIRE_AT_BROWSER_CLOSE = env('SESSION_EXPIRE_AT_BROWSER_CLOSE')
+# Sessions
+SESSION_EXPIRE_AT_BROWSER_CLOSE = env('SESSION_EXPIRE_AT_BROWSER_CLOSE')
 SESSION_COOKIE_AGE = env('SESSION_COOKIE_AGE')
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = False
+
+
+from datetime import timedelta
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    # … otros ajustes opcionales …
+}
