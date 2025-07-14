@@ -2,3 +2,4 @@ venvbia/
 __pycache__/
 .env/
 /frontend/node_modules/
+/venvGrupoBIA/
